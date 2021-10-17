@@ -33,7 +33,8 @@
         </div>
 
         <!-- Form -->
-        <form action="">
+        <form action="{{route('register')}}" method="post">
+            @csrf
             <div class="container w-lg-50">
                 <div class="row text-right mt-4">
                     <!-- Name -->
@@ -68,16 +69,16 @@
                     <!-- رقم الهاتف -->
                     <div class="col-12">
                         <div class="form-group">
-                            <label class="text-light float-right" for="name">ارقم الهاتف</label>
-                            <input class="form-control input-circle" id="phone_number" type="text">
+                            <label class="text-light float-right" for="phone_number">ارقم الهاتف</label>
+                            <input class="form-control input-circle" id="phone_number" type="text" name="phone_number">
                         </div>
                     </div>
 
                     <!-- الفرقة -->
                     <div class="col-12">
                         <div class="form-group">
-                            <label class="text-light float-right" for="name">الفرقة</label>
-                            <select class="form-control input-circle" id="level_id">
+                            <label class="text-light float-right" for="level_id">الفرقة</label>
+                            <select class="form-control input-circle" id="level_id"     >
                                 <option>اختر الفرقة</option>
                                 <option value="1">الفرقة الاولى</option>
                                 <option value="2">الفرقة الثانية</option>
