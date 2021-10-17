@@ -1,0 +1,350 @@
+
+@media (min-width: 992px) {
+    .navbar-brand
+        {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    .border-xl-right{border-right:1px solid #dee2e6!important}
+    
+}
+
+/************************* Xlarge Screen *************************/
+@media (max-width:1200px){
+    .top-section-home{
+        background-size:cover;
+        height: 600px;
+    }
+    /**
+    =========================  Middel Section Home  =========================
+    **/
+    .box .img-1{
+        position: absolute;
+        left: 187px;
+        top: -64px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-2{
+        position: absolute;
+        left: 215px;
+        top: -63px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-3{
+        position: absolute;
+        left: 209px;
+        top: -71px;
+        width: 80px;
+        height: 80px;
+    }
+    .profile-courses-contain .new-contain-course a {
+        top: 80px;
+        left: 58px;
+    }
+    .badg .circle {
+        margin-right: 58px;
+    }
+    
+}
+
+/************************* Large Screen *************************/
+@media (max-width:992px){
+    .nav-links li{
+        text-align: center !important;
+        margin-top: 10px;
+    }
+    .nav-user{
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    /**
+    
+    =========================  Middel Section Home  =========================
+    
+    **/
+    .box .img-1{
+        position: absolute;
+        left: 125px;
+        top: -64px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-2{
+        position: absolute;
+        left: 151px;
+        top: -63px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-3{
+        position: absolute;
+        left: 155px;
+        top: -71px;
+        width: 80px;
+        height: 80px;
+    }
+    /**************************************************/
+
+.mid-section-home .circle-1{
+    position: absolute;
+    bottom: -45px;
+    right: 125px;
+}
+.mid-section-home .circle-2{
+    position: absolute;
+    top: 40%;
+    right: 34px;
+}
+.mid-section-home .circle-3{
+    position: absolute;
+    top: -39px;
+    right: 40%;
+}
+.mid-section-home .plus-1{
+    position: absolute;
+    bottom: -45px;
+    right: 83%;
+}
+.mid-section-home .plus-2{
+    position: absolute;
+    bottom: 29%;
+    left: 10%;
+}
+.mid-section-home .plus-3{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+}
+.mid-section-home .plus-4{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mid-section-home .plus-5{
+    position: absolute;
+    top: -72px;
+    right: 10px;
+}
+.mid-section-home .rectangle-1{
+    position: absolute;
+    bottom: 45%;
+    right: 35%;;
+}
+.mid-section-home .rectangle-2{
+    position: absolute;
+    top: 39%;
+    left: 5%;
+}
+    /**
+    
+    =========================  Bottom Section Home  =========================
+    
+    **/
+    
+    .bottom-section-home .cloud-1{
+        position: absolute;
+        top: 90px;
+        right: 47px;
+    }
+    
+    .bottom-section-home .cloud-2{
+        position: absolute;
+        top: 71px;
+        left: 63px;
+    }
+    .bottom-section-home .plus-1{
+        position: absolute;
+        top: 114px;
+        right: 50%;
+    }
+    .bottom-section-home .plus-2{
+        position: absolute;
+        bottom: 336px;
+        left: 83px;
+    }
+    
+    .bottom-section-home .rectangle-1{
+        position: absolute;
+        bottom: 45%;
+        left: 50%;
+    
+    }
+    .profile-courses-contain {
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .add-course {
+        margin-right: 83px;
+    }
+    .profile-courses-contain .new-contain-course a {
+        top: 80px;
+        left: 296px;
+    }
+    .badg .circle {
+        margin-right: 49px;
+    }
+    .nav_item {
+        margin: 0 0px 0 25px;
+    }
+    
+}
+
+/************************* Middel Screen *************************/
+@media (max-width:768px){
+    /**
+    
+    =========================  Middel Section Home  =========================
+    
+    **/
+    .box .img-1{
+        position: absolute;
+        left: 220px;
+        top: -64px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-2{
+        position: absolute;
+        left: 240px;
+        top: -63px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-3{
+        position: absolute;
+        left: 240px;
+        top: -71px;
+        width: 80px;
+        height: 80px;
+    }
+    .mid-goal{
+        margin-top: 63px;
+    }
+    .last-goal{
+        margin-top: 63px;
+    } 
+    /***************************************/
+    .mid-section-home .circle-2{
+        position: absolute;
+        top: 42%;
+        right: 34px;
+    }
+    .mid-section-home .plus-3{
+        position: absolute;
+        top: 42%;
+        left: 50%;
+    }
+    .mid-section-home .rectangle-1{
+        position: absolute;
+        bottom: 43%;
+        right: 46%;
+    }
+    .mid-section-home .rectangle-2{
+        position: absolute;
+        top: 42%;
+        left: 5%;
+    }
+    .add-course {
+        margin-right: 64px;
+    }
+    .profile-courses-contain .new-contain-course a {
+        position: absolute;
+        top: 80px;
+        left: 200px;
+    }
+    .badg .circle {
+        margin-right: 27px;
+    }
+    .d-max-none{
+        display: none;
+    }
+    .nav_item {
+        margin: 0 0px 0 25px;
+    }
+}
+/************************* Small Screen *************************/
+@media (max-width:576px){
+    /**
+    
+    =========================  Middel Section Home  =========================
+    
+    **/
+    .box .img-1{
+        position: absolute;
+        left: 189px;
+        top: -64px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-2{
+        position: absolute;
+        left: 204px;
+        top: -63px;
+        width: 80px;
+        height: 80px;
+    }
+    .box .img-3{
+        position: absolute;
+        left: 204px;
+        top: -71px;
+        width: 80px;
+        height: 80px;
+    }
+    /**
+    
+    =========================  Bottom Section Home  =========================
+    
+    **/
+    
+        .bottom-section-home .cloud-1{
+            position: absolute;
+            top: 73px;
+            right: 46px;
+        }
+        
+        .bottom-section-home .cloud-2{
+            position: absolute;
+            top: 71px;
+            left: 63px;
+        }
+        .bottom-section-home .plus-1{
+            position: absolute;
+            top: 114px;
+            right: 50%;
+        }
+        .bottom-section-home .plus-2{
+            position: absolute;
+            bottom: 336px;
+            left: 83px;
+        }
+        
+        .bottom-section-home .rectangle-1{
+            position: absolute;
+            bottom: 47%;
+            left: 50%;
+        
+        }
+        .profile-courses-contain .new-contain-course a {
+            top: 80px;
+            left: 176px;
+        }
+        .profile-courses-contain{
+            margin-right: 0;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+        .add-course {
+            margin-right: 56px;
+        }
+        .badg .circle {
+            margin-right: 18px;
+        }
+        .nav_item {
+            margin: 0 0px 0 25px;
+        }
+    }

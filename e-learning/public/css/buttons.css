@@ -1,0 +1,21 @@
+.btn-login{
+    color: #212529;
+    background-color: #FEE13A;
+    border-color: #FEE13A;
+    width: 120px;
+    height: 30px;
+    border-radius: 20px;
+    padding: 3px;
+    font-size: 15px;
+}
+
+.btn-join{
+    color: #212529;
+    background-color: #FEE13A;
+    border-color: #FEE13A;
+    width: 100px;
+    height: 30px;
+    border-radius: 9px;
+    padding: 0;
+    font-size: 20px;
+}
