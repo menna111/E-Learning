@@ -13,5 +13,7 @@ class Teachers extends Model
         'user_id',
         'job',
         'bio',
+        'role',
+        'code'
     ];
 }

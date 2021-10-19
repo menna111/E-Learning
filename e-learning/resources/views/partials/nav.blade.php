@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-6">
                     <li class="nav-item">
-                        <a href="register0.html" type="button" class="btn btn-login">
+                        <a href="{{route('student.register')}}" type="button" class="btn btn-login">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             سجل الان
                         </a>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-6">
                     <li class="nav-item">
-                        <a href="login.html" type="button" class="btn btn-login">
+                        <a href="{{route('login')}}" type="button" class="btn btn-login">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             تسجيل الدخول
                         </a>

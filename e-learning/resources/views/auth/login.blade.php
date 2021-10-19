@@ -17,21 +17,24 @@
         تسجيل الدخول
     </h1>
     <!-- Form -->
-    <form action="">
+    <form action="{{route('login')}}" method="post">
+        @csrf
         <div class="container w-lg-50">
             <div class="row text-right mt-4">
                 <!-- Name Or Email -->
                 <div class="col-12">
                     <div class="form-group">
-                        <label class="text-light float-right" for="name">اسم المستخدم</label>
-                        <input class="form-control input-circle" id="name" type="text">
-                    </div>
-                </div>
-                <!-- Password -->
-                <div class="col-12">
+                        <label class="text-light float-right" for="name"> اسم المستخدم او الايميل</label>
+                      <input  type="email" class="form-control input-circle" id="name" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                            </div>
+                        </div>
+                        <!-- Password -->
+                        <div class="col-12">
                     <div class="form-group">
                         <label class="text-light float-right" for="password">كلمة المرور</label>
-                        <input class="form-control input-circle" id="password" type="password">
+                        <input class="form-control input-circle" id="password" type="password" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
                     </div>
                 </div>
                 <!-- Submit -->

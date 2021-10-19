@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Code;
+use App\Models\levels;
+use App\Models\Students;
+use App\Models\Teachers;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,7 +47,8 @@ class RegisterController extends Controller
     }
 
     public function studentRegister(){
-        return view('auth.student-register');
+        $levels=levels::all();
+        return view('auth.student-register',compact('levels'));
     }
 
     /**
@@ -60,6 +66,21 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'job' => ['required', 'string', 'max:255'],
             'bio' => ['required', 'string', 'max:255'],
+            'code'=>[
+               function($attribute,$value,$fail){
+                 $code=Code::where('code',$value)->first();
+                 if (! is_null($code)){
+                     $code_registered=Teachers::where('code',$code)->first();
+                     if (! is_null($code_registered)){
+                         $fail('الكود مستخدم من قبل');
+                     }
+                 }else{
+                     $fail('الكود غير صحيح');
+                 }
+
+               }
+
+            ],
 
         ]);
       }else{
@@ -77,15 +98,70 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+//     * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        dd('hiiiiii');
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        if (array_key_exists('code',$data)){
+
+            DB::beginTransaction();
+
+            try {
+                $user=User::create([
+                    'name' => $data['name'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'role' =>'teacher',
+
+                ]);
+                Teachers::create([
+                    'user_id' => $user->id,
+                    'code' => $data['code'],
+                    'bio' => $data['bio'],
+                    'job' => $data['job'],
+
+                ]);
+
+                DB::commit();
+                return $user;
+                // all good
+            } catch (\Exception $e) {
+                DB::rollback();
+                return back()->with('error','something wrong');
+            }
+
+
+
+        }else{
+
+            DB::beginTransaction();
+
+            try {
+                $user=User::create([
+                    'name' => $data['name'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'role' =>'student',
+
+                ]);
+                Students::create([
+                    'user_id' => $user->id,
+                    'phone_number' => $data['phone_number'],
+                    'level_id' => $data['level_id'],
+
+
+                ]);
+
+                DB::commit();
+                return $user;
+                // all good
+            } catch (\Exception $e) {
+                DB::rollback();
+                return back()->with('error','something wrong');
+            }
+
+
+        }
     }
 }

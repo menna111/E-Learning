@@ -36,33 +36,46 @@
         <form action="{{route('register')}}" method="post">
             @csrf
             <div class="container w-lg-50">
+                <!-- /resources/views/post/create.blade.php -->
+                <div style="margin-top: 20px">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+                <!-- Create Post Form -->
                 <div class="row text-right mt-4">
                     <!-- Name -->
                     <div class="col-12">
                         <div class="form-group">
-                            <label class="text-light float-right" for="name">الااسم</label>
-                            <input class="form-control input-circle" id="name" type="text">
+                            <label class="text-light float-right" for="name">الاسم</label>
+                            <input class="form-control input-circle" id="name" type="text" name="name">
                         </div>
                     </div>
                     <!-- Email -->
                     <div class="col-12">
                         <div class="form-group">
                             <label class="text-light float-right" for="email">البريد الالكتروني</label>
-                            <input class="form-control input-circle" id="email" type="email">
+                            <input class="form-control input-circle" id="email" type="email" name="email">
                         </div>
                     </div>
                     <!-- Password -->
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
                             <label class="text-light float-right" for="password">كلمة المرور</label>
-                            <input class="form-control input-circle" id="password" type="password">
+                            <input class="form-control input-circle" id="password" type="password" name="password">
                         </div>
                     </div>
                     <!-- Password -->
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
                             <label class="text-light float-right" for="password">اعادة كلمة المرور</label>
-                            <input class="form-control input-circle" id="password" type="password">
+                            <input class="form-control input-circle" id="password" type="password" name="password_confirmation">
                         </div>
                     </div>
 
@@ -78,12 +91,11 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label class="text-light float-right" for="level_id">الفرقة</label>
-                            <select class="form-control input-circle" id="level_id"     >
+                            <select class="form-control input-circle" id="level_id"  name="level_id"    >
                                 <option>اختر الفرقة</option>
-                                <option value="1">الفرقة الاولى</option>
-                                <option value="2">الفرقة الثانية</option>
-                                <option value="3">الفرقة الثالثة</option>
-                                <option value="4">الفرقة الرابعة</option>
+                                 @foreach($levels as $level)
+                                <option value="{{$level->id}}" >{{$level->name}} </option>
+                                @endforeach
 
                             </select>
                         </div>

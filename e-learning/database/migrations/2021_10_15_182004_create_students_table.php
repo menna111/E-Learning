@@ -22,11 +22,6 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('level_id');
             $table->foreign('level_id')->on('levels')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
 
-            $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')->on('departments')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
-
-
-
             $table->timestamps();
         });
     }

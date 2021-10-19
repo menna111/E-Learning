@@ -13,7 +13,7 @@ class Students extends Model
         'user_id',
         'phone_number',
         'level_id',
-        'department_id',
+
 
     ];
 }
