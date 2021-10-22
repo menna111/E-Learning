@@ -24,12 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dd('mmmmmm');
+
         $user=Auth::user();
         if ($user->role=='teacher'){
-            return view('teacher');
+            return view('teacher.home');
         }else{
-            return view('student');
+            return view('student.home');
         }
 
     }

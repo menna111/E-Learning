@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/student-register', [RegisterController::class, 'studentRegister'])->name('student.register');
+Route::post('/update',[ProfileController::class,'updateTeacher'])->name('updateTeacher');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
