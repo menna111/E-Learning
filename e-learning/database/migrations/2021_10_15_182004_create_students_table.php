@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
 
             $table->string('phone_number');
             $table->unsignedBigInteger('level_id');
-            $table->foreign('level_id')->on('levels')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('level_id')->on('level')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->timestamps();
         });

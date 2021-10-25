@@ -2,7 +2,6 @@
 @section('title','الصفحة الرئيسية')
 @section('content')
 @php
-$user=\Illuminate\Support\Facades\Auth::user();
 @endphp
     <!-- ==================================================
                       Start Profile Section
@@ -16,7 +15,7 @@ $user=\Illuminate\Support\Facades\Auth::user();
                 <div class="row">
                     <!-- Image -->
                     <div class="col-3 align-self-center">
-                        <img class="rounded-circle" src="img/f324158a7087ed4d700bcfa9cd5431e8" alt="" width="50">
+                        <img class="rounded-circle" src="{{$user->image}}" alt="" width="50">
                     </div>
                     <!-- Name -->
                     <div class="col-9 my-4 mr-0 text-right align-self-center">
@@ -38,8 +37,33 @@ $user=\Illuminate\Support\Facades\Auth::user();
     <!-- ==================================================
                       Start Content Section
     ================================================== -->
+
+<div class="container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+<!-- Create Post Form -->
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{session()->get('success')}}
+        </div>
+    @endif
+</div>
     <div class="container text-right">
+
+
+
+
         <div class="row my-4">
+
+
             <!-- NavBar List -->
             <div class="col-2 d-none d-lg-block">
                 <ul>
@@ -508,11 +532,13 @@ $user=\Illuminate\Support\Facades\Auth::user();
                     <br>
                     <div class="contect">
                         <div class="container">
+                            <form class="" action="{{route('profile.teacher')}}" method="post" enctype="multipart/form-data">
+                                @csrf
                             <div class="row align-items-center mt-3">
                                 <div class="col-2">
                                     <div class="edit-profile-image text-right">
-                                        <img class="rounded-circle" src="https://via.placeholder.com/108" height="108" width="108" alt="" title="">
-                                        <button class="btn ">
+                                        <img class="rounded-circle" src="{{asset($user->image)}}" height="108" width="108" alt="" title="">
+                                        <button class="btn " type="button">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
                                         <input type="file" name="image" id="lol" style="display: none;">
@@ -525,8 +551,7 @@ $user=\Illuminate\Support\Facades\Auth::user();
                                     </div>
                                 </div>
                             </div>
-                            <form class="" action="{{route('updateTeacher')}}" method="post">
-                                @csrf
+
                                 <div class="row w-75 mx-auto">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -540,20 +565,27 @@ $user=\Illuminate\Support\Facades\Auth::user();
                                             <input class="form-control dark-input" id="name" type="email" autocomplete="off" value="{{$user->email}}" name="email">
                                         </div>
                                     </div>
-{{--                                    <div class="col-12">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <label class="text-grey float-right" for="name">كلمة المرور</label>--}}
-{{--                                            <input class="form-control dark-input" id="name" type="password" autocomplete="off">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="text-grey float-right" for="job">الوظيفة</label>
+                                            <input class="form-control dark-input" id="job" type="text"  value="{{$teacher->job}}" name="job">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="text-grey float-right" for="bio">النبذة التعريفية</label>
+                                            <textarea class="form-control dark-input" id="bio" type="text" rows="3"  name="bio">{{$teacher->bio}}</textarea>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-12 mt-3">
                                         <div class="row justify-content-around">
-{{--                                            <button class="btn btn-outline-save">--}}
-{{--                                                <a href="{{route('updateTeacher')}}" >حفظ</a>--}}
-{{--                                            </button>--}}
 
                                             <input class="btn btn-outline-save" type="submit" value="حفظ " >
-                                            <input class="btn btn-outline-delete" type="submit" value="إلغاء">
+                                            <input class="btn btn-outline-delete"  value="إلغاء">
                                         </div>
                                     </div>
                                 </div>

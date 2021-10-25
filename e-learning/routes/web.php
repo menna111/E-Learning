@@ -22,6 +22,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/student-register', [RegisterController::class, 'studentRegister'])->name('student.register');
-Route::post('/update',[ProfileController::class,'updateTeacher'])->name('updateTeacher');
+Route::middleware('auth')->group(function (){
+    Route::post('/update',[ProfileController::class,'updateTeacher'])->name('profile.teacher');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+

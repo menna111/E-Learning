@@ -12,10 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -27,9 +24,11 @@ class HomeController extends Controller
 
         $user=Auth::user();
         if ($user->role=='teacher'){
-            return view('teacher.home');
+            $teacher=$user->teacher;
+            return view('teacher.home',compact('user','teacher'));
         }else{
-            return view('student.home');
+            $student=$user->student;
+            return view('student.home',compact('user','student'));
         }
 
     }

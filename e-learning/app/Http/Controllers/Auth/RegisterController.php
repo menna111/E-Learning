@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Code;
-use App\Models\levels;
-use App\Models\Students;
-use App\Models\Teachers;
+use App\Models\level;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -47,12 +47,13 @@ class RegisterController extends Controller
     }
 
     public function studentRegister(){
-        $levels=levels::all();
+        $levels=level::all();
         return view('auth.student-register',compact('levels'));
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Get a validator f
+     * or an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -70,7 +71,7 @@ class RegisterController extends Controller
                function($attribute,$value,$fail){
                  $code=Code::where('code',$value)->first();
                  if (! is_null($code)){
-                     $code_registered=Teachers::where('code',$code)->first();
+                     $code_registered=Teacher::where('code',$code)->first();
                      if (! is_null($code_registered)){
                          $fail('الكود مستخدم من قبل');
                      }
@@ -115,7 +116,7 @@ class RegisterController extends Controller
                     'role' =>'teacher',
 
                 ]);
-                Teachers::create([
+                Teacher::create([
                     'user_id' => $user->id,
                     'code' => $data['code'],
                     'bio' => $data['bio'],
@@ -145,7 +146,7 @@ class RegisterController extends Controller
                     'role' =>'student',
 
                 ]);
-                Students::create([
+                Student::create([
                     'user_id' => $user->id,
                     'phone_number' => $data['phone_number'],
                     'level_id' => $data['level_id'],
