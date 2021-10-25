@@ -43,7 +43,7 @@
                 </div>
                 <!-- Have account -->
                 <div class="col-12 mt-3">
-                    <span class="text-light">ليس لديك حساب <a href="register0.html" class="text-yellow">قم بالتسجيل الان</a></span>
+                    <span class="text-light">ليس لديك حساب <a href="{{route('register')}}" class="text-yellow">قم بالتسجيل الان</a></span>
                 </div>
             </div>
         </div>

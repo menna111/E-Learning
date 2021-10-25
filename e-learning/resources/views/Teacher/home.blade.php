@@ -38,26 +38,24 @@
                       Start Content Section
     ================================================== -->
 
-<div class="container">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
-<!-- Create Post Form -->
-    @if (session()->has('success'))
-        <div class="alert alert-success">
-            {{session()->get('success')}}
-        </div>
-    @endif
-</div>
     <div class="container text-right">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
+    <!-- Create Post Form -->
+        @if (session()->has('success'))
+            <div class="alert alert-success">
+                {{session()->get('success')}}
+            </div>
+        @endif
 
 
 
@@ -537,7 +535,7 @@
                             <div class="row align-items-center mt-3">
                                 <div class="col-2">
                                     <div class="edit-profile-image text-right">
-                                        <img class="rounded-circle" src="{{asset($user->image)}}" height="108" width="108" alt="" title="">
+                                        <img class="rounded-circle" src="{{render_image($user->image)}}" height="108" width="108" alt="" title="">
                                         <button class="btn " type="button">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
