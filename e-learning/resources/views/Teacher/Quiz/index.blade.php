@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','الصفحة الرئيسية')
+@section('title', 'الصفحة الرئيسية |الاختبارات')
 @section('content')
 
     <!-- ==================================================
@@ -36,151 +36,92 @@
     <!-- ==================================================
                       Start Content Section
     ================================================== -->
-
-
     <div class="container text-right">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-    <!-- Create Post Form -->
-        @if (session()->has('success'))
-            <div class="alert alert-success">
-                {{session()->get('success')}}
-            </div>
-        @endif
-
-
+        <div class="container text-right">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
         <div class="row my-4">
 
-
             <!-- NavBar List -->
             <div class="col-2 d-none d-lg-block">
-                <ul>
-                    <!-- Active With text-yellow -->
-                    <li class="mt-3">
-                        <a href="courses1.html" class="text-yellow text-light h4 ">كورساتي</a>
-                    </li>
-                    <li class="mt-5">
-                        <a href="students.html" class="text-light h4">طلابي</a>
-                    </li>
-                    <li class="mt-5">
-                        <a href="students.html" class="text-light h4">كوزاتي</a>
-                    </li>
-                </ul>
+            @include('partials.sidebar');
+
             </div>
             <div class="col-lg-10 col-12">
                 <!-- Doctors -->
-                <div class="row justify-content-between mt-2">
+                <div class="row mt-2">
                     <div class="col-lg-4 col-5">
-                        <p class="h2 text-light mr-2">كورساتي</p>
+                        <p class="h2 text-light mr-2">إنشاء كويز جديد</p>
                     </div>
-                    <div class="col-lg-3 col-4 text-left">
-                        <button class="btn btn-edit" data-toggle="modal" data-target="#create-content">اضافة محتوي جديد</button>
+                    <div class="w-100"></div>
+                    <div class="col-lg-4 col-12 mt-4">
+                        <div class="new-quiz ">
+                            <div class="circle">
+                                <a href="">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row justify-content-around my-4">
-                    <div class="col-10">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل المواد</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل الاقسام</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل المواد</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل الترمات</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-1 col-2 align-self-center">
-                        <a class="text-yellow" href=""><i class="fa fa-refresh h-font" aria-hidden="true"></i></a>
-                    </div>
-                </div>
+
                 <div class="row justify-content-around my-4">
                     <div class="col-11">
                         <table class="table text-light text-center">
                             <thead>
                             <tr>
-                                <th class="text-right" scope="col">الكورس</th>
+                                <th class="text-right" scope="col">الكويز</th>
                                 <th scope="col">المادة</th>
-                                <th scope="col">القسم</th>
-                                <th scope="col">الفرقة</th>
-                                <th class="d-max-none" scope="col">الترم</th>
-                                <th class="d-max-none" scope="col">عدد المشاهدات</th>
-                                <th class="d-max-none" scope="col">نتائج الكويز</th>
+                                <th scope="col">عدد الطلبة</th>
+                                <th scope="col">مرئي</th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
+                                @forelse($quizzes as $quiz)
                                 <th class="text-right">الدايوت</th>
-                                <td>‫‪‬‬الالكترونية</td>
                                 <td>كهربا</td>
                                 <td>الاولي</td>
-                                <td class="d-max-none">الاول</td>
-                                <td class="d-max-none">5000</td>
-                                <td class="d-max-none">صيفررر</td>
+                                <td>الاولي</td>
+                                <td>الاولي</td>
+                                <td>الاولي</td>
+
                                 <td><button class="btn btn-edit" data-toggle="modal" data-target="#edit-course">تعديل</button></td>
+                                @empty
+                                    <td colspan="7">لا يوجد كويزات حتى الان</td>
+                                @endforelse
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
     <!-- ==================================================
                       End Content Section
     ================================================== -->
+
+
+
     <!-- ==================================================
-                  Start Edit Model Section
-  ================================================== -->
+                    Start Edit Model Section
+    ================================================== -->
     <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -531,23 +472,23 @@
                         <div class="container">
                             <form class="" action="{{route('profile.teacher')}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                            <div class="row align-items-center mt-3">
-                                <div class="col-2">
-                                    <div class="edit-profile-image text-right">
-                                        <img class="rounded-circle" src="{{render_image($user->image)}}" height="108" width="108" alt="" title="">
-                                        <button class="btn " type="button">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </button>
-                                        <input type="file" name="image" id="lol" style="display: none;">
+                                <div class="row align-items-center mt-3">
+                                    <div class="col-2">
+                                        <div class="edit-profile-image text-right">
+                                            <img class="rounded-circle" src="{{render_image($user->image)}}" height="108" width="108" alt="" title="">
+                                            <button class="btn " type="button">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </button>
+                                            <input type="file" name="image" id="lol" style="display: none;">
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="show-profile-name">
+                                            <p class="name">{{$user->name}}</p>
+                                            <p class="job">أستاذ مساعد رئيس - قسم مجلس الشيوخ</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-10">
-                                    <div class="show-profile-name">
-                                        <p class="name">{{$user->name}}</p>
-                                        <p class="job">أستاذ مساعد رئيس - قسم مجلس الشيوخ</p>
-                                    </div>
-                                </div>
-                            </div>
 
                                 <div class="row w-75 mx-auto">
                                     <div class="col-12">
@@ -597,6 +538,4 @@
                     End Edit Profile Model Section
     ================================================== -->
 
-
 @endsection
-

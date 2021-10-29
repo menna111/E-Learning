@@ -25,7 +25,7 @@ class HomeController extends Controller
         $user=Auth::user();
         if ($user->role=='teacher'){
             $teacher=$user->teacher;
-            return view('teacher.home',compact('user','teacher'));
+            return redirect()->route('quiz.index');
         }else{
             $student=$user->student;
             return view('student.home',compact('user','student'));
