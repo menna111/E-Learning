@@ -9,4 +9,5 @@ use App\Http\Controllers\Teacher\QuizController;
 
 Route::prefix('quiz')->group(function (){
     Route::get('/index',[QuizController::class,'index'])->name('quiz.index');
+    Route::get('/create',[QuizController::class,'create'])->name('quiz.create');
 });

@@ -65,7 +65,7 @@
                     <div class="col-lg-4 col-12 mt-4">
                         <div class="new-quiz ">
                             <div class="circle">
-                                <a href="">
+                                <a href="" data-toggle="modal" data-target="#content" id="create_quiz">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -99,7 +99,7 @@
                                 <td>الاولي</td>
                                 <td>الاولي</td>
 
-                                <td><button class="btn btn-edit" data-toggle="modal" data-target="#edit-course">تعديل</button></td>
+                                <td><button class="btn btn-edit" data-toggle="modal" data-target="#content">تعديل</button></td>
                                 @empty
                                     <td colspan="7">لا يوجد كويزات حتى الان</td>
                                 @endforelse
@@ -122,7 +122,7 @@
     <!-- ==================================================
                     Start Edit Model Section
     ================================================== -->
-    <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="content" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body bg-model">
@@ -130,71 +130,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <br>
-                    <div class="contect">
-                        <h5 class="text-yellow text-center">تعديل المحتوي</h5>
-                        <div class="container w-lg-75">
-                            <form action="">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">الاسم</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">التخصص</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">الفرقة</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">الترم</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">المادة</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">رابط الفيديو</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">الوصف</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="الرسالة"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="text-light float-right" for="name">ملاحظات</label>
-                                            <input class="form-control input-circle" id="name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 text-right">
-                                        <button class="btn btn-edit">
-                                            حفظ
-                                        </button>
-                                        <button class="btn btn-edit mr-2">
-                                            حذف المحتوي
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <div class="contect" id="variable_content">
+
                 </div>
             </div>
         </div>
@@ -539,3 +476,26 @@
     ================================================== -->
 
 @endsection
+@section('script')
+
+    <script>
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#create_quiz').click((e)=>{
+            e.preventDefault()
+            $.ajax({
+                type: "GET",
+                url: `{{route('quiz.create')}}`,
+                success:function (response){
+                    $('#variable_content').html(response)
+                }
+
+            } )
+        });
+
+    </script>
+
+    @endsection

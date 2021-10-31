@@ -15,4 +15,8 @@ class QuizController extends Controller
         $quizzes=Quiz::paginate(10);
         return view('teacher.quiz.index',compact('user','teacher','quizzes'));
     }
+    public function create(){
+        return view('teacher.quiz.create');
+    }
 }
+
