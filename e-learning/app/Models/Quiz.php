@@ -19,4 +19,15 @@ class Quiz extends Model
     public function questions(){
         return $this->hasMany(Question::class);
     }
+    public function subject(){
+      return  $this->belongsTo(Subject::class);
+    }
+    public function  getPublished(){
+        if ($this->published == 1){
+            return 'مرئي' ;
+
+        }else{
+            return  'غير مرئي' ;
+        }
+    }
 }

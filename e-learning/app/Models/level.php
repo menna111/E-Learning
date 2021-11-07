@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class level extends Model
 {
     use HasFactory;
+
+    public function subject(){
+        return $this->hasMany(Subject::class);
+    }
 }

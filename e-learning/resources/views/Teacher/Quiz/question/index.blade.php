@@ -1,119 +1,6 @@
 @extends('layouts.app')
-@section('title', 'الصفحة الرئيسية |الاختبارات')
+@section('title', 'الصفحة الرئيسية |الاسئلة')
 @section('css')
-{{--    <style>--}}
-{{--        .switch {--}}
-{{--            position: relative;--}}
-{{--            display: inline-block;--}}
-{{--            width: 40px;--}}
-{{--            height: 30px;--}}
-{{--        }--}}
-
-{{--        .switch input {--}}
-{{--            opacity: 0;--}}
-{{--            width: 0;--}}
-{{--            height: 0;--}}
-{{--        }--}}
-
-{{--        .slider {--}}
-{{--            position: absolute;--}}
-{{--            cursor: pointer;--}}
-{{--            top: 0;--}}
-{{--            left: 0;--}}
-{{--            right: 0;--}}
-{{--            bottom: 0;--}}
-{{--            background-color: #ccc;--}}
-{{--            -webkit-transition: .4s;--}}
-{{--            transition: .4s;--}}
-{{--        }--}}
-
-{{--        .slider:before {--}}
-{{--            position: absolute;--}}
-{{--            content: "";--}}
-{{--            height: 20px;--}}
-{{--            width: 20px;--}}
-{{--            left: 0;--}}
-{{--            bottom: 4px;--}}
-{{--            background-color: white;--}}
-{{--            -webkit-transition: .4s;--}}
-{{--            transition: .4s;--}}
-{{--        }--}}
-
-{{--        input:checked + .slider {--}}
-{{--            background-color: #2196F3;--}}
-{{--        }--}}
-
-{{--        input:focus + .slider {--}}
-{{--            box-shadow: 0 0 1px #2196F3;--}}
-{{--        }--}}
-
-{{--        input:checked + .slider:before {--}}
-{{--            -webkit-transform: translateX(17px);--}}
-{{--            -ms-transform: translateX(17px);--}}
-{{--            transform: translateX(17px);--}}
-{{--        }--}}
-
-{{--        /* Rounded sliders */--}}
-{{--        .slider.round {--}}
-{{--            border-radius: 34px;--}}
-{{--        }--}}
-
-{{--        .slider.round:before {--}}
-{{--            border-radius: 50%;--}}
-{{--        }--}}
-
-{{--        fieldset {--}}
-{{--            border: solid 1px #000;--}}
-{{--            padding: 10px;--}}
-{{--            display: block;--}}
-{{--            clear: both;--}}
-{{--            margin: 5px 0px;--}}
-{{--        }--}}
-
-{{--        legend {--}}
-{{--            padding: 0px 10px;--}}
-{{--            background: black;--}}
-{{--            color: #FFF;--}}
-{{--        }--}}
-
-{{--        input.add {--}}
-{{--            float: right;--}}
-{{--        }--}}
-
-{{--        input.fieldname {--}}
-{{--            float: left;--}}
-{{--            clear: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--        select.fieldtype {--}}
-{{--            float: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--        input.remove {--}}
-{{--            float: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--        #yourform label {--}}
-{{--            float: left;--}}
-{{--            clear: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--        #yourform input, #yourform textarea {--}}
-{{--            float: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--    </style>--}}
-
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @endsection
 @section('content')
@@ -175,13 +62,13 @@
                 <!-- Doctors -->
                 <div class="row mt-2">
                     <div class="col-lg-4 col-5">
-                        <p class="h2 text-light mr-2">إنشاء كويز جديد</p>
+                        <p class="h2 text-light mr-2">إضافة سؤال جديد</p>
                     </div>
                     <div class="w-100"></div>
                     <div class="col-lg-4 col-12 mt-4">
                         <div class="new-quiz ">
                             <div class="circle">
-                                <a href="" data-toggle="modal" data-target="#content" id="create_quiz">
+                                <a href="" data-toggle="modal" data-target="#content" id="create_question">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -195,13 +82,8 @@
                         <table class="table text-light text-center">
                             <thead>
                             <tr>
-                                <th class="text-right" scope="col">الكويز</th>
-                                <th scope="col">المادة</th>
+                                <th class="text-right" scope="col">السؤال</th>
 
-                                <th scope="col">مرئي</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
 
@@ -210,25 +92,11 @@
                             </thead>
                             <tbody>
 
-                                @forelse($quizzes as $quiz)
+                                @forelse($questions as $question)
                                     <tr>
-                                <th class="text-right">{{$quiz->title}}</th>
-                                <td>{{$quiz->subject->name}}</td>
-                                <td>{{$quiz->getPublished()}}</td>
-                                    <td>
-                                        <button class="btn btn-edit">
-                                            <a href="" class="text-black text-decoration-none" id="">
-                                                النتائج
-                                            </a>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-edit">
-                                            <a href="{{route('question.index',$quiz->id)}}" class="text-black text-decoration-none" id="">
-                                                الاسئلة
-                                            </a>
-                                        </button>
-                                    </td>
+                                <th class="text-right">{{$question->content}}</th>
+
+
 
                                     <td>
                                         <button class="btn btn-edit">
@@ -247,12 +115,12 @@
                                     </td>
                                 </tr>
                                 @empty
-                                    <tr><td colspan="7">لا يوجد كويزات حتى الان</td></tr>
+                                    <tr><td colspan="7">لا يوجد أسئلة حتى الان</td></tr>
                                 @endforelse
                             </tbody>
                         </table>
 {{--                      {{ $quizzes->links() }}--}}
-                      {!! $quizzes->links() !!}
+                      {!! $questions->links() !!}
                     </div>
                 </div>
             </div>
@@ -631,11 +499,11 @@
                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#create_quiz').click((e)=>{
+        $('#create_question').click((e)=>{
             e.preventDefault()
             $.ajax({
                 type: "GET",
-                url: `{{route('quiz.create')}}`,
+                url: `{{route('question.create',$quiz->id)}}`,
                 success:function (response){
                     $('#variable_content').html(response)
                 }

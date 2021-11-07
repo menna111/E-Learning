@@ -15,7 +15,7 @@ class CreateQuizzesTable extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->string('tile');
+            $table->string('title');
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->on('subjects')->references('id')->cascadeOnUpdate()->cascadeOnUpdate();
             $table->smallInteger('duration');

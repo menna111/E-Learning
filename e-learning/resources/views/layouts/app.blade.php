@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/media.css')}}">
 
     <title>@yield('title',env('APP_NAME'))</title>
+    @yield('css')
 </head>
 <body @yield('color',"style=background-color:black")>
 

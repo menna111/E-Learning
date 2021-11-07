@@ -1,64 +1,126 @@
-    <h5 class="text-yellow text-center">تعديل المحتوي</h5>
+    <h5 class="text-yellow text-center">اضافة كويز</h5>
     <div class="container w-lg-75">
-        <form action="">
+        <form id="add_new_quiz">
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label class="text-light float-right" for="name">الاسم</label>
-                        <input class="form-control input-circle" id="name" type="text">
+                        <label class="text-light float-right" for="title">العنوان</label>
+                        <input class="form-control input-circle" id="title" name="title" type="text">
                     </div>
                 </div>
-                <div class="col-lg-3 col-12">
+
+                <div class="col-lg-6 col-12">
                     <div class="form-group">
-                        <label class="text-light float-right" for="name">التخصص</label>
-                        <input class="form-control input-circle" id="name" type="text">
+                        <label class="text-light float-right" for="level_id">الفرقة</label>
+                        <select class="form-control dark-input" name="level_id" id="level_id">
+                            <option></option>
+                            @foreach($levels as $level)
+                            <option value="{{$level->id}}">{{$level->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class="col-lg-3 col-12">
+
+                <div class="col-lg-6 col-12">
                     <div class="form-group">
-                        <label class="text-light float-right" for="name">الفرقة</label>
-                        <input class="form-control input-circle" id="name" type="text">
+                        <label class="text-light float-right" for="subject_id">المادة</label>
+                        <select class="form-control dark-input" name="subject_id" id="subject_id">
+
+                        </select>
                     </div>
                 </div>
-                <div class="col-lg-3 col-12">
-                    <div class="form-group">
-                        <label class="text-light float-right" for="name">الترم</label>
-                        <input class="form-control input-circle" id="name" type="text">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-12">
-                    <div class="form-group">
-                        <label class="text-light float-right" for="name">المادة</label>
-                        <input class="form-control input-circle" id="name" type="text">
-                    </div>
-                </div>
+
                 <div class="col-12">
                     <div class="form-group">
-                        <label class="text-light float-right" for="name">رابط الفيديو</label>
-                        <input class="form-control input-circle" id="name" type="text">
+                        <label class="text-light float-right" for="duration">المدة</label>
+                        <input class="form-control input-circle" id="duration" name="duration" type="number">
                     </div>
                 </div>
+
                 <div class="col-12">
                     <div class="form-group">
-                        <label class="text-light float-right" for="name">الوصف</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="الرسالة"></textarea>
+                        <label class="text-light float-right" for="expire_at">تنتهي صلاحية الكويز في:</label>
+                        <input class="form-control input-circle" id="expire_at" name="expire_at" type="datetime-local">
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label class="text-light float-right" for="name">ملاحظات</label>
-                        <input class="form-control input-circle" id="name" type="text">
-                    </div>
-                </div>
+
                 <div class="col-12 text-right">
-                    <button class="btn btn-edit">
+                    <button class="btn btn-edit" id="submit_form">
                         حفظ
                     </button>
-                    <button class="btn btn-edit mr-2">
-                        حذف المحتوي
-                    </button>
+
                 </div>
             </div>
         </form>
     </div>
-</div>
+
+    <script>
+        $('#level_id').change(function (){
+            $.ajax({
+                type: "POST",
+                url: `{{url('quiz/choose-subject')}}/${this.value}`,
+                success:function (response){
+                    console.log(response)
+                    if(response.status == true){
+
+                        let subjects=document.getElementById('subject_id');
+                        subjects.innerHTML="";
+                        response.data.forEach(function (e){
+                            subjects.innerHTML +=`<option value="${e.id}">${e.name} </option>`;
+                        });
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'خطأ',
+                            text: response.msg,
+
+                        });
+                    }
+
+                }
+
+            } )
+        });
+
+        $('#submit_form').click(function (e){
+            e.preventDefault()
+            $.ajax({
+                type: "POST",
+                url: `{{route('quiz.store')}}`,
+                data:{
+                  title: $('#title').val(),
+                    duration: $('#duration').val(),
+                    subject_id: $('#subject_id').val(),
+                    expire_at: $('#expire_at').val(),
+
+
+                },
+                success:function (response){
+                    console.log(response)
+                    if(response.status == true){
+
+                         Swal.fire({
+                             icon: 'success',
+                             title: 'تم بنجاح',
+                             text: response.msg,
+
+
+
+                        });
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'خطأ',
+                            text: response.msg,
+
+                        });
+                    }
+
+
+
+                }
+
+            } )
+        })
+
+    </script>

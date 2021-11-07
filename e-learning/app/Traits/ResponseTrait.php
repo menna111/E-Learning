@@ -18,7 +18,9 @@ trait ResponseTrait {
         return response()->json([
             'status'    => false,
             'msg'       => $msg,
-        ], $statusCode, ['Content-Type' => 'application/json;charset=UTF-8']);
+            '$statusCode'  => $statusCode,
+
+        ], 200, ['Content-Type' => 'application/json;charset=UTF-8']);
     }
 
     /**
