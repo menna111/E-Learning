@@ -518,8 +518,11 @@
                     $('#variable_content').html(response)
                 }
 
-            } )
-        }
+
+     } )
+         $('#content').modal('hide');
+
+     }
 
     </script>
 

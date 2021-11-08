@@ -124,13 +124,14 @@
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
                 if (response.status == true) {
                     Swal.fire({
                         icon: 'success',
                         title: 'تم بنجاح!',
                         text: response.msg,
+
                     })
+                    $('#content').modal('hide');
 
                 } else {
                     Swal.fire({
