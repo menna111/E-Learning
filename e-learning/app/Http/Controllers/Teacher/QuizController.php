@@ -63,13 +63,13 @@ class QuizController extends Controller
     public function edit(int $id){
         $quiz=Quiz::whereId($id)->first();
 //        $subject=Subject::whereId($quiz->subject_id);
-//        $level_id=$quiz->subject->level_id;
+        $level_id=$quiz->subject->level_id;
 
         if (is_null($quiz)){
             return  $this->returnError('لم يتم العثور على الكويز',404);
         }
         $levels=level::select('id', 'name')->get();
-        return view('teacher.quiz.edit',compact('levels','quiz'));
+        return view('teacher.quiz.edit',compact('levels','quiz','level_id'));
     }
 
     public function update(Request $request,$id){

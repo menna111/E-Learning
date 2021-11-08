@@ -18,6 +18,8 @@ Route::prefix('quiz')->group(function (){
     Route::get('/{id}/questions',[QuestionController::class,'index'])->name('question.index');
     Route::get('{id}/question/create',[QuestionController::class,'create'])->name('question.create');
     Route::post('{id}/question/store',[QuestionController::class,'store'])->name('question.store');
+    Route::get('/question/edit/{id}',[QuestionController::class,'edit'])->name('question.edit');
+    Route::post('/question/update/{id}',[QuestionController::class,'update'])->name('question.update');
 
 
 });

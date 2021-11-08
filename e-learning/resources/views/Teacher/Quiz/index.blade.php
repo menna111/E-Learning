@@ -278,7 +278,7 @@
                     </button>
                     <br>
                     <div class="contect" id="variable_content">
-
+                    </div>
                 </div>
             </div>
         </div>

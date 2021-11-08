@@ -18,7 +18,7 @@
                         <option></option>
 
                         @foreach($levels as $level)
-                            <option value="{{$level->id}}" @if($subject->level_id == $level->id) selected @endif>{{$level->name}}</option>
+                            <option value="{{$level->id}}" @if($level_id == $level->id) selected @endif>{{$level->name}}</option>
                         @endforeach
                     </select>
                 </div>
