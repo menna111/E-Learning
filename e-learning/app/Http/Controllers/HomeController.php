@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quiz;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +30,14 @@ class HomeController extends Controller
             return redirect()->route('quiz.index');
         }else{
             $student=$user->student;
-            return view('student.home',compact('user','student'));
+            $quizzes=Quiz::where('level_id',$student->level_id)
+                -> where('published',1)
+                -> where('expire_at','>',Carbon::now()->toDateTimeString())
+                ->latest()
+                ->paginate(1);
+
+//            dd($quizzes);
+            return view('student.home',compact('user','student','quizzes'));
         }
 
     }

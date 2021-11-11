@@ -18,6 +18,11 @@ class CreateQuizzesTable extends Migration
             $table->string('title');
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->on('subjects')->references('id')->cascadeOnUpdate()->cascadeOnUpdate();
+
+            $table->unsignedBigInteger('level_id');
+            $table->foreign('level_id')->on('levels')->references('id')->cascadeOnUpdate()->cascadeOnUpdate();
+
+
             $table->smallInteger('duration');
             $table->string('expire_at');
             $table->boolean('published');
