@@ -14,12 +14,16 @@ Route::prefix('quiz')->group(function (){
     Route::post('/store',[QuizController::class,'store'])->name('quiz.store');
     Route::get('/edit/{id}',[QuizController::class,'edit'])->name('quiz.edit');
     Route::post('/update/{id}',[QuizController::class,'update'])->name('quiz.update');
+    Route::get('/delete/{id}',[QuizController::class,'deleteQuiz'])->name('quiz.delete');
+
 
     Route::get('/{id}/questions',[QuestionController::class,'index'])->name('question.index');
     Route::get('{id}/question/create',[QuestionController::class,'create'])->name('question.create');
     Route::post('{id}/question/store',[QuestionController::class,'store'])->name('question.store');
     Route::get('/question/edit/{id}',[QuestionController::class,'edit'])->name('question.edit');
     Route::post('/question/update/{id}',[QuestionController::class,'update'])->name('question.update');
+    Route::get('/question/delete/{id}',[QuestionController::class,'deleteQuestion'])->name('question.delete');
+
 
 
 });

@@ -138,7 +138,7 @@
                     <br>
                     <div class="contect">
                         <div class="container">
-                            <form class="" action="{{route('profile.teacher')}}" method="post" enctype="multipart/form-data">
+                            <form class="" action="{{route('profile.student')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row align-items-center mt-3">
                                     <div class="col-2">
@@ -153,7 +153,6 @@
                                     <div class="col-10">
                                         <div class="show-profile-name">
                                             <p class="name">{{$user->name}}</p>
-                                            <p class="job">أستاذ مساعد رئيس - قسم مجلس الشيوخ</p>
                                         </div>
                                     </div>
                                 </div>
@@ -162,13 +161,20 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label class="text-grey float-right" for="name">إسم المستخدم</label>
-                                            <input class="form-control dark-input" id="name" type="text" autocomplete="off" placeholder="{{$user->name}}" name="name">
+                                            <input class="form-control dark-input" id="name" type="text" autocomplete="off" placeholder="{{$user->name}}"  name="name">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label class="text-grey float-right" for="name">البريد الإلكتروني</label>
-                                            <input class="form-control dark-input" id="name" type="email" autocomplete="off" value="{{$user->email}}" name="email">
+                                            <label class="text-grey float-right" for="email">البريد الإلكتروني</label>
+                                            <input class="form-control dark-input" id=email" type="email" autocomplete="off" value="{{$user->email}}" name="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="text-grey float-right" for="phone_number">رقم الهاتف</label>
+                                            <input class="form-control dark-input" id="phone_number" type="text" autocomplete="off" value="{{$student->phone_number}}" name="phone_number">
                                         </div>
                                     </div>
 

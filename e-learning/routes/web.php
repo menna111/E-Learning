@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\student\StudentProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,9 @@ Auth::routes();
 
 Route::get('/student-register', [RegisterController::class, 'studentRegister'])->name('student.register');
 Route::middleware('auth')->group(function (){
-    Route::post('/update',[ProfileController::class,'updateTeacher'])->name('profile.teacher');
+    Route::post('/update/teacher',[ProfileController::class,'updateTeacher'])->name('profile.teacher');
+    Route::post('/update/student',[StudentProfileController::class,'updateStudent'])->name('profile.student');
+
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

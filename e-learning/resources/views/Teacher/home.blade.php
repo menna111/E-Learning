@@ -63,18 +63,7 @@
 
             <!-- NavBar List -->
             <div class="col-2 d-none d-lg-block">
-                <ul>
-                    <!-- Active With text-yellow -->
-                    <li class="mt-3">
-                        <a href="courses1.html" class="text-yellow text-light h4 ">كورساتي</a>
-                    </li>
-                    <li class="mt-5">
-                        <a href="students.html" class="text-light h4">طلابي</a>
-                    </li>
-                    <li class="mt-5">
-                        <a href="students.html" class="text-light h4">كوزاتي</a>
-                    </li>
-                </ul>
+           @include('partials.sidebar');
             </div>
             <div class="col-lg-10 col-12">
                 <!-- Doctors -->
@@ -87,61 +76,6 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-around my-4">
-                    <div class="col-10">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل المواد</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل الاقسام</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل المواد</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="form-group arraw-white">
-                                        <select class="form-control form-control-sm input-circle" id="exampleFormControlSelect1">
-                                            <option>عرض كل الترمات</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-1 col-2 align-self-center">
-                        <a class="text-yellow" href=""><i class="fa fa-refresh h-font" aria-hidden="true"></i></a>
-                    </div>
-                </div>
                 <div class="row justify-content-around my-4">
                     <div class="col-11">
                         <table class="table text-light text-center">
@@ -246,7 +180,7 @@
                                         <div class="row justify-content-around">
 
                                             <input class="btn btn-outline-save" type="submit" value="حفظ " >
-                                            <input class="btn btn-outline-delete"  value="إلغاء">
+                                            <input class="btn btn-outline-delete"  value="إلغاء" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>

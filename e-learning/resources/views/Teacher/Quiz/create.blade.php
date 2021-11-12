@@ -15,7 +15,7 @@
                         <select class="form-control dark-input" name="level_id" id="level_id">
                             <option></option>
                             @foreach($levels as $level)
-                            <option value="{{$level->id}}">{{$level->name}}</option>
+                            <option value="{{$level->id}}" id="level_id">{{$level->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -44,9 +44,15 @@
                     </div>
                 </div>
 
-                <div class="col-12 text-right">
+                <div class="col-6 text-right">
                     <button class="btn btn-edit" id="submit_form">
                         حفظ
+                    </button>
+
+                </div>
+                <div class="col-6 text-right">
+                    <button class="btn btn-edit btn-danger" data-dismiss="modal">
+                        حذف
                     </button>
 
                 </div>
@@ -90,6 +96,7 @@
                 data:{
                   title: $('#title').val(),
                     duration: $('#duration').val(),
+                    level_id: $('#level_id').val(),
                     subject_id: $('#subject_id').val(),
                     expire_at: $('#expire_at').val(),
 

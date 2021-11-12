@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use App\Models\level;
 use App\Models\Quiz;
+use App\Models\QuizStudent;
 use App\Models\Subject;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ class QuizController extends Controller
             return  $this->returnSuccess('تم اضافة الكويز بنجاح',201);
 
         }catch (\Exception $exception){
-//            return  $this->returnError($exception->getMessage(),500);
+            return  $this->returnError($exception->getMessage(),500);
             return  $this->returnError('حدث خطأ ما برجاء المحاولة لاحقا',500);
         }
     }
@@ -92,6 +93,17 @@ class QuizController extends Controller
 //            return  $this->returnError($exception->getMessage(),500);
             return  $this->returnError('حدث خطأ ما برجاء المحاولة لاحقا',500);
         }
+    }
+
+    public function deleteQuiz($id){
+        $quiz=Quiz::whereId($id)->first();
+
+        if (is_null($quiz)){
+            return  $this->returnError('لم يتم العثور على الكويز',404);
+        }
+//        QuizStudent::destroy($id);
+        $quiz->delete();
+
     }
 }
 

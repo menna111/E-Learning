@@ -172,8 +172,18 @@ class QuestionController extends Controller
 
         }catch (\Exception $exception){
             DB::rollBack();
-            return  $this->returnError($exception->getMessage(),500);
+//            return  $this->returnError($exception->getMessage(),500);
             return  $this->returnError('حدث خطأ ما برجاء المحاولة لاحقا',500);
         }
+    }
+
+    public function deleteQuestion($id){
+        $question=Question::whereId($id)->first();
+
+
+        if (is_null($question)){
+            return  $this->returnError('لم يتم العثور على السؤال',404);
+        }
+        $question->delete();
     }
 }

@@ -135,7 +135,6 @@
                     <!-- Name -->
                     <div class="col-9 my-4 mr-0 text-right align-self-center">
                         <h4 class="p-0 m-0">{{$user->name}}</h4>
-                        <h6 class="p-0 m-0"><a class="text-light" href="">تعديل الاسم</a> - <a class="text-light" href="">أضافة سيرة ذاتية</a></h6>
                     </div>
                 </div>
             </div>
@@ -239,8 +238,8 @@
                                     </td>
 
                                     <td>
-                                        <button class="btn btn-edit bg-danger">
-                                            <a href="" class="text-white text-decoration-none"  id="">
+                                        <button class="btn btn-edit bg-danger" >
+                                            <a href="" class="text-white text-decoration-none"  id="" onclick="deleteQuiz({{$quiz->id}})"  data-toggle="modal" data-target="#exampleModal">
                                                حذف
                                             </a>
                                         </button>
@@ -287,259 +286,7 @@
                     End Edit Model Section
     ================================================== -->
 
-    <!-- ==================================================
-                    Start Create Model Section
-    ================================================== -->
-    <div class="modal fade" id="create-content" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content bg-model">
-                <div class="modal-body">
-                    <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <br>
-                    <div class="contect">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <ul class="nav nav-tabs justify-content-around" id="myTab" role="tablist">
-                                        <li class="nav_item pb-1">
-                                            <a class="active text-light" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">كورس جديد</a>
-                                        </li>
-                                        <li class="nav_item pb-1">
-                                            <a class="text-light" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">محاضرة جديدة</a>
-                                        </li>
-                                        <li class="nav_item pb-1">
-                                            <a class="text-light" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">خبر</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <div class="container  w-lg-75">
-                                                <form action="" class="mt-4">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label class="text-light float-right" for="name">اسم الكورس</label>
-                                                                <input class="form-control input-circle" id="name" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">التخصص</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">الفرقة</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">الترم</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">المادة</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label class="text-light float-right" for="name">الوصف</label>
-                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="الرسالة"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 text-right">
-                                                            <button class="btn btn-edit">
-                                                                انشاء
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                            <div class="container  w-lg-75">
-                                                <form action="" class="mt-4">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">الاسم</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">التخصص</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">الفرقة</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">الترم</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-12">
-                                                            <div class="form-group arraw-white">
-                                                                <label class="text-light float-right" for="name">المادة</label>
-                                                                <select class="form-control input-circle" id="exampleFormControlSelect1">
-                                                                    <option></option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label class="text-light float-right" for="name">رابط الفيديو</label>
-                                                                <input class="form-control input-circle" id="name" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label class="text-light float-right" for="name">الوصف</label>
-                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label class="text-light float-right" for="name">ملاحظات</label>
-                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 text-right">
-                                                            <button class="btn btn-edit">
-                                                                انشاء
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                            <form action="" class="mt-4">
-                                                <div class="row w-75 mx-auto justify-content-center">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control dark-input" id="exampleFormControlTextarea1" rows="7"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-12">
-                                                        <div class="form-group arraw-black-l">
-                                                            <label class="text-light float-right" for="name">التخصص </label>
-                                                            <select class="form-control dark-input" id="exampleFormControlSelect1">
-                                                                <option></option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-12">
-                                                        <div class="form-group arraw-black-l">
-                                                            <label class="text-light float-right" for="name">الفرقة  </label>
-                                                            <select class="form-control dark-input" id="exampleFormControlSelect1">
-                                                                <option></option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-12">
-                                                        <div class="form-group ">
-                                                            <label class="text-light float-right" for="name">المجموعة</label>
-                                                            <input class="form-control dark-input" type="text" id="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-12">
-                                                        <div class="form-group ">
-                                                            <label class="text-light float-right" for="name">السكشن</label>
-                                                            <input class="form-control dark-input" type="text" id="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <input class="btn btn-outline-delete" type="submit" value="إلغاء">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ==================================================
-                    End Create Model Section
-    ================================================== -->
+
 
     <!-- ==================================================
                     Start Edit Profile Model Section
@@ -569,7 +316,7 @@
                                     <div class="col-10">
                                         <div class="show-profile-name">
                                             <p class="name">{{$user->name}}</p>
-                                            <p class="job">أستاذ مساعد رئيس - قسم مجلس الشيوخ</p>
+                                            <p class="job">{{$teacher->job}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -607,7 +354,7 @@
                                         <div class="row justify-content-around">
 
                                             <input class="btn btn-outline-save" type="submit" value="حفظ " >
-                                            <input class="btn btn-outline-delete"  value="إلغاء">
+                                            <input class="btn btn-outline-delete"  value="إلغاء" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -622,7 +369,41 @@
                     End Edit Profile Model Section
     ================================================== -->
 
-@endsection
+        <!-- ==================================================
+                        start delete quiz Model Section
+        ================================================== -->
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body bg-model">
+                     <h5 style="color: white">هل تريد حذف الكويز ؟</h5>
+                    </div>
+                    <div class="modal-footer bg-model">
+                        <button type="button" class="btn btn-edit" data-dismiss="modal">الغاء</button>
+                        <button type="button" class="btn btn-edit" >تأكيد</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- ==================================================
+                     end delete quiz Model Section
+     ================================================== -->
+
+
+
+
+
+
+        @endsection
 @section('script')
 
     <script>
@@ -652,6 +433,18 @@
 
             } )
         }
+        function deleteQuiz(id){
+            $.ajax({
+                type: "GET",
+                url: `{{url('/quiz/delete')}}/${id}`,
+                success:function (response){
+                    $('#variable_content').html(response)
+                    $('#exampleModal').modal('hide');
+                }
+
+            } )
+        }
+
 
     </script>
 

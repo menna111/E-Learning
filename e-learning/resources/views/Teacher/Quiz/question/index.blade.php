@@ -108,7 +108,7 @@
 
                                     <td>
                                         <button class="btn btn-edit bg-danger">
-                                            <a href="" class="text-white text-decoration-none"  id="">
+                                            <a href="" class="text-white text-decoration-none"  id="" onclick="deleteQuestion({{$question->id}})"  data-toggle="modal" data-target="#exampleModal">
                                                حذف
                                             </a>
                                         </button>
@@ -116,6 +116,7 @@
                                 </tr>
                                 @empty
                                     <tr><td colspan="7">لا يوجد أسئلة حتى الان</td></tr>
+
                                 @endforelse
                             </tbody>
                         </table>
@@ -239,7 +240,38 @@
                     End Edit Profile Model Section
     ================================================== -->
 
-@endsection
+
+        <!-- ==================================================
+                start delete question Model Section
+================================================== -->
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body bg-model">
+                        <h5 style="color: white">هل تريد حذف السؤال ؟</h5>
+                    </div>
+                    <div class="modal-footer bg-model">
+                        <button type="button" class="btn btn-edit" data-dismiss="modal">الغاء</button>
+                        <button type="button" class="btn btn-edit" >تأكيد</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- ==================================================
+                     end delete question Model Section
+     ================================================== -->
+
+
+        @endsection
 @section('script')
 
     <script>
@@ -272,6 +304,20 @@
          $('#content').modal('hide');
 
      }
+
+        function deleteQuestion(id){
+            $.ajax({
+                type: "GET",
+                url: `{{url('/quiz/question/delete')}}/${id}`,
+                success:function (response){
+                    $('#variable_content').html(response)
+                }
+
+
+            } )
+            $('#content').modal('hide');
+
+        }
 
     </script>
 

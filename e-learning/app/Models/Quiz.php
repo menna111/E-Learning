@@ -14,6 +14,7 @@ class Quiz extends Model
         'duration',
         'expire_at',
         'published',
+        'level_id'
     ];
 
     public function questions(){
