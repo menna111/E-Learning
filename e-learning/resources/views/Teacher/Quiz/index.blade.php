@@ -1,120 +1,114 @@
 @extends('layouts.app')
 @section('title', 'الصفحة الرئيسية |الاختبارات')
 @section('css')
-{{--    <style>--}}
-{{--        .switch {--}}
-{{--            position: relative;--}}
-{{--            display: inline-block;--}}
-{{--            width: 40px;--}}
-{{--            height: 30px;--}}
-{{--        }--}}
 
-{{--        .switch input {--}}
-{{--            opacity: 0;--}}
-{{--            width: 0;--}}
-{{--            height: 0;--}}
-{{--        }--}}
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+        }
 
-{{--        .slider {--}}
-{{--            position: absolute;--}}
-{{--            cursor: pointer;--}}
-{{--            top: 0;--}}
-{{--            left: 0;--}}
-{{--            right: 0;--}}
-{{--            bottom: 0;--}}
-{{--            background-color: #ccc;--}}
-{{--            -webkit-transition: .4s;--}}
-{{--            transition: .4s;--}}
-{{--        }--}}
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-{{--        .slider:before {--}}
-{{--            position: absolute;--}}
-{{--            content: "";--}}
-{{--            height: 20px;--}}
-{{--            width: 20px;--}}
-{{--            left: 0;--}}
-{{--            bottom: 4px;--}}
-{{--            background-color: white;--}}
-{{--            -webkit-transition: .4s;--}}
-{{--            transition: .4s;--}}
-{{--        }--}}
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 0;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-{{--        input:checked + .slider {--}}
-{{--            background-color: #2196F3;--}}
-{{--        }--}}
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
 
-{{--        input:focus + .slider {--}}
-{{--            box-shadow: 0 0 1px #2196F3;--}}
-{{--        }--}}
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }  input:checked + .slider:before {
+               -webkit-transform: translateX(17px);
+               -ms-transform: translateX(17px);
+               transform: translateX(17px);
+           }
 
-{{--        input:checked + .slider:before {--}}
-{{--            -webkit-transform: translateX(17px);--}}
-{{--            -ms-transform: translateX(17px);--}}
-{{--            transform: translateX(17px);--}}
-{{--        }--}}
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
 
-{{--        /* Rounded sliders */--}}
-{{--        .slider.round {--}}
-{{--            border-radius: 34px;--}}
-{{--        }--}}
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        fieldset {
+            border: solid 1px #000;
+            padding: 10px;
+            display: block;
+            clear: both;
+            margin: 5px 0px;
+        }
 
-{{--        .slider.round:before {--}}
-{{--            border-radius: 50%;--}}
-{{--        }--}}
+        legend {
+            padding: 0px 10px;
+            background: black;
+            color: #FFF;
+        }  input.add {
+               float: right;
+           }
 
-{{--        fieldset {--}}
-{{--            border: solid 1px #000;--}}
-{{--            padding: 10px;--}}
-{{--            display: block;--}}
-{{--            clear: both;--}}
-{{--            margin: 5px 0px;--}}
-{{--        }--}}
+        input.fieldname {
+            float: left;
+            clear: left;
+            display: block;
+            margin: 5px;
+        }
 
-{{--        legend {--}}
-{{--            padding: 0px 10px;--}}
-{{--            background: black;--}}
-{{--            color: #FFF;--}}
-{{--        }--}}
+        select.fieldtype {
+            float: left;
+            display: block;
+            margin: 5px; }
 
-{{--        input.add {--}}
-{{--            float: right;--}}
-{{--        }--}}
+        input.remove {
+            float: left;
+            display: block;
+            margin: 5px;
+        }
+        #yourform label {
+            float: left;
+            clear: left;
+            display: block;
+            margin: 5px;
+        }
 
-{{--        input.fieldname {--}}
-{{--            float: left;--}}
-{{--            clear: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
+        #yourform input, #yourform textarea {
+            float: left;
+            display: block;
+            margin: 5px;
+        }
 
-{{--        select.fieldtype {--}}
-{{--            float: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
+    </style>
 
-{{--        input.remove {--}}
-{{--            float: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
 
-{{--        #yourform label {--}}
-{{--            float: left;--}}
-{{--            clear: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--        #yourform input, #yourform textarea {--}}
-{{--            float: left;--}}
-{{--            display: block;--}}
-{{--            margin: 5px;--}}
-{{--        }--}}
-
-{{--    </style>--}}
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @endsection
 @section('content')
 
@@ -197,7 +191,9 @@
                                 <th class="text-right" scope="col">الكويز</th>
                                 <th scope="col">المادة</th>
 
-                                <th scope="col">مرئي</th>
+                                <th scope="col">
+                                  مرئي
+                                </th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
@@ -213,7 +209,12 @@
                                     <tr>
                                 <th class="text-right">{{$quiz->title}}</th>
                                 <td>{{$quiz->subject->name}}</td>
-                                <td>{{$quiz->getPublished()}}</td>
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" @if($quiz->published) checked @endif name="status" onchange="publish(this)" data-id="{{ $quiz->id }}">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
                                     <td>
                                         <button class="btn btn-edit">
                                             <a href="" class="text-black text-decoration-none" id="">
@@ -238,10 +239,9 @@
                                     </td>
 
                                     <td>
-                                        <button class="btn btn-edit bg-danger" >
-                                            <a href="" class="text-white text-decoration-none"  id="" onclick="deleteQuiz({{$quiz->id}})"  data-toggle="modal" data-target="#exampleModal">
+                                        <button class="btn btn-edit bg-danger" onclick="deleteQuiz({{$quiz->id}})">
                                                حذف
-                                            </a>
+
                                         </button>
                                     </td>
                                 </tr>
@@ -369,34 +369,7 @@
                     End Edit Profile Model Section
     ================================================== -->
 
-        <!-- ==================================================
-                        start delete quiz Model Section
-        ================================================== -->
 
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-body bg-model">
-                     <h5 style="color: white">هل تريد حذف الكويز ؟</h5>
-                    </div>
-                    <div class="modal-footer bg-model">
-                        <button type="button" class="btn btn-edit" data-dismiss="modal">الغاء</button>
-                        <button type="button" class="btn btn-edit" >تأكيد</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <!-- ==================================================
-                     end delete quiz Model Section
-     ================================================== -->
 
 
 
@@ -434,15 +407,31 @@
             } )
         }
         function deleteQuiz(id){
-            $.ajax({
-                type: "GET",
-                url: `{{url('/quiz/delete')}}/${id}`,
-                success:function (response){
-                    $('#variable_content').html(response)
-                    $('#exampleModal').modal('hide');
-                }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
 
-            } )
+                    $.ajax({
+                        type: "GET",
+                        url: `{{url('/quiz/delete')}}/${id}`,
+                        success:function (response){
+                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+
+
+                            $('#exampleModal').modal('hide');
+                        }
+
+                    } )
+                }
+            });
+
         }
 
 

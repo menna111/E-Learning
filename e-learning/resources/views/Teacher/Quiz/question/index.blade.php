@@ -22,7 +22,6 @@
                     <!-- Name -->
                     <div class="col-9 my-4 mr-0 text-right align-self-center">
                         <h4 class="p-0 m-0">{{$user->name}}</h4>
-                        <h6 class="p-0 m-0"><a class="text-light" href="">تعديل الاسم</a> - <a class="text-light" href="">أضافة سيرة ذاتية</a></h6>
                     </div>
                 </div>
             </div>
@@ -108,7 +107,7 @@
 
                                     <td>
                                         <button class="btn btn-edit bg-danger">
-                                            <a href="" class="text-white text-decoration-none"  id="" onclick="deleteQuestion({{$question->id}})"  data-toggle="modal" data-target="#exampleModal">
+                                            <a href="" class="text-white text-decoration-none"  id="" onclick="deleteModal({{$question->id}})"  data-toggle="modal" data-target="#deleteModal">
                                                حذف
                                             </a>
                                         </button>
@@ -248,18 +247,9 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" id="delete_form">
 
-                    <div class="modal-body bg-model">
-                        <h5 style="color: white">هل تريد حذف السؤال ؟</h5>
-                    </div>
-                    <div class="modal-footer bg-model">
-                        <button type="button" class="btn btn-edit" data-dismiss="modal">الغاء</button>
-                        <button type="button" class="btn btn-edit" >تأكيد</button>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -305,17 +295,34 @@
 
      }
 
+        function deleteModal(id){
+            let modal=`
+                      <div class="modal-content">
+
+                    <div class="modal-body bg-model">
+                        <h5 style="color: white">هل تريد حذف السؤال ؟</h5>
+                    </div>
+                    <div class="modal-footer bg-model">
+                        <button type="button" class="btn btn-edit" data-dismiss="modal">الغاء</button>
+                        <button type="button" class="btn btn-edit" onclick="deleteQuestion(${id})">تأكيد</button>
+                    </div>
+                </div>
+            `
+            $('#delete_form').html(modal);
+        }
+
         function deleteQuestion(id){
             $.ajax({
                 type: "GET",
                 url: `{{url('/quiz/question/delete')}}/${id}`,
                 success:function (response){
-                    $('#variable_content').html(response)
+                    $('#deleteModal').modal('hide');
+                    // window.reload();
+
                 }
 
 
             } )
-            $('#content').modal('hide');
 
         }
 
