@@ -80,7 +80,7 @@
                             <tr>
                                 <th class="text-right" scope="col">الكويز</th>
                                 <th scope="col">المادة</th>
-
+                                <th>درجة الامتحان </th>
                                 <th class="d-max-none" scope="col">دخول الكويز</th>
                                 <th scope="col"></th>
                             </tr>
@@ -96,13 +96,14 @@
                             <tr>
                                 <th class="text-right">{{$quiz->title}}</th>
                                 <th scope="col">{{$quiz->subject->name}}</th>
+                                <th></th>
 
                                 @if(is_null($finished))
                                 <td><a href="{{route('quiz.enroll',$quiz->id)}}" class="btn btn-edit" >دخول الكويز</a></td>
 
 
                                 @else
-                                    <td><a href="#" class="btn btn-edit" data-toggle="modal" data-target="#edit-course">عرض الكويز</a></td>
+                                    <td><a href="{{route('quiz.show',$quiz->id)}}" class="btn btn-edit" >عرض الكويز</a></td>
 
 
                                 @endif

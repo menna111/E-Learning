@@ -55,13 +55,13 @@
                     </div>
                 </div>
                 {{-- <form class="w-100" action="{{ route('student.quizzes.submit', $quiz->id) }}" method="POST"> --}}
-                <form class="w-100" action="{{ route('student.quizz.submit', $quiz->id) }}" method="POST">
+                <form class="w-100" action="{{ route('student.quiz.submit', $quiz->id) }}" method="POST">
                     @csrf
                     @foreach($questions as $index => $question)
                         <input type="hidden" readonly value="{{ $quiz->id }}" name="quiz_id">
                         <input type="hidden" readonly value="{{ $questions->count() }}" name="num_of_questions">
                         <div class="col-12">
-                            <div class="quiz-question">
+                            <div class="quiz-question p-2">
                                 <p class="question text-center">{{ $question->content }}</p>
                                 @if($question->image != NULL)
                                     <a href="{{ render_image($question->image) }}" target="_blank">
@@ -72,7 +72,7 @@
                                 @foreach($question->answers()->get()->shuffle() as $answer)
                                     <label class="answer">
                                         {{ $answer->content }}
-                                        <input type="radio" name="answer_{{$index}}" value="{{ $answer->id }}" required>
+                                        <input type="radio" name="answer[{{$question->id}}]" value="{{ $answer->id }}" required>
                                         <span class="checkmark"></span>
                                     </label>
                                 @endforeach
@@ -97,7 +97,7 @@
         })
 
         // Timer
-        var countDownDate = new Date("{{ $ends_time }}").getTime();
+        var countDownDate = new Date("{{ $end_time }}").getTime();
         var x = setInterval(function() {
 
             var now = new Date().getTime();
@@ -119,5 +119,7 @@
                 $('form').submit()
             }
         }, 1000);
+
+        // end of timer
     </script>
 @endsection
