@@ -207,44 +207,44 @@
 
                                 @forelse($quizzes as $quiz)
                                     <tr>
-                                <th class="text-right">{{$quiz->title}}</th>
-                                <td>{{$quiz->subject->name}}</td>
-                                <td>
-                                    <label class="switch">
-                                        <input type="checkbox" @if($quiz->published) checked @endif name="status" onchange="publish(this)" data-id="{{ $quiz->id }}">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </td>
-                                    <td>
-                                        <button class="btn btn-edit">
-                                            <a href="{{route('quiz.result',$quiz->id)}}" class="text-black text-decoration-none" id="">
-                                                النتائج
-                                            </a>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-edit">
-                                            <a href="{{route('question.index',$quiz->id)}}" class="text-black text-decoration-none" id="">
-                                                الاسئلة
-                                            </a>
-                                        </button>
-                                    </td>
+                                        <th class="text-right">{{$quiz->title}}</th>
+                                        <td>{{$quiz->subject->name}}</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" @if($quiz->published) checked @endif name="status" onchange="publish(this)" data-id="{{ $quiz->id }}">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                            <td>
+                                                <button class="btn btn-edit">
+                                                    <a href="{{route('quiz.result',$quiz->id)}}" class="text-black text-decoration-none" id="">
+                                                        النتائج
+                                                    </a>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-edit">
+                                                    <a href="{{route('question.index',$quiz->id)}}" class="text-black text-decoration-none" id="">
+                                                        الاسئلة
+                                                    </a>
+                                                </button>
+                                            </td>
 
-                                    <td>
-                                        <button class="btn btn-edit">
-                                            <a href="" class="text-black text-decoration-none" data-toggle="modal" data-target="#content"  onclick="editQuiz({{$quiz->id}})">
-                                                تعديل
-                                            </a>
-                                        </button>
-                                    </td>
+                                            <td>
+                                                <button class="btn btn-edit">
+                                                    <a href="" class="text-black text-decoration-none" data-toggle="modal" data-target="#content"  onclick="editQuiz({{$quiz->id}})">
+                                                        تعديل
+                                                    </a>
+                                                </button>
+                                            </td>
 
-                                    <td>
-                                        <button class="btn btn-edit bg-danger" onclick="deleteQuiz({{$quiz->id}})">
-                                               حذف
+                                            <td>
+                                                <button class="btn btn-edit bg-danger" onclick="deleteQuiz({{$quiz->id}})">
+                                                       حذف
 
-                                        </button>
-                                    </td>
-                                </tr>
+                                                </button>
+                                            </td>
+                                        </tr>
                                 @empty
                                     <tr><td colspan="7">لا يوجد كويزات حتى الان</td></tr>
                                 @endforelse
@@ -385,6 +385,7 @@
                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
         });
+
         $('#create_quiz').click((e)=>{
             e.preventDefault()
             $.ajax({
@@ -396,7 +397,7 @@
 
             } )
         });
-     function editQuiz(id){
+        function editQuiz(id){
             $.ajax({
                 type: "GET",
                 url: `{{url('/quiz/edit')}}/${id}`,
@@ -434,7 +435,41 @@
 
         }
 
+        function publish(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            console.log(status)
 
+            $.ajax({
+                type: "POST",
+                url: "{{ route('quiz.publish') }}",
+                data: {
+                    status: status,
+                    id: $(el).data('id')
+                },
+                success: function(response) {
+                    if(response.status == true){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم بنجاح',
+                            text: response.msg,
+                        })
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'خطا',
+                            text: response.msg,
+                        })
+                    }
+
+                }
+
+            });
+        }
     </script>
 
     @endsection
