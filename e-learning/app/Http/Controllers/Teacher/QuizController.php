@@ -11,6 +11,8 @@ use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Exports\ResultExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class QuizController extends Controller
 {
@@ -111,7 +113,26 @@ class QuizController extends Controller
         $teacher=$user->teacher;
         $quiz=Quiz::findOrFail($id);
         $result=$quiz->result()->paginate(10);
-        return view('teacher.quiz.result',compact('quiz','result','user','teacher'));
+        $questions=$quiz->questions;
+
+        $full_mark=0;
+        foreach ($questions as $question){
+            $full_mark +=$question->full_mark;
+        }
+
+        return view('teacher.quiz.result',compact('quiz','result','user','teacher','full_mark'));
+
+    }
+
+    public function download($id){
+        $quiz=Quiz::findOrFail($id);
+        $result=$quiz->result()->latest()->get();
+        $questions=$quiz->questions;
+        $full_mark=0;
+        foreach ($questions as $question){
+            $full_mark +=$quiz->full_mark;
+        }
+        return Excel::download(new ResultExport($result,$full_mark),'result.xlsx');
 
     }
 }

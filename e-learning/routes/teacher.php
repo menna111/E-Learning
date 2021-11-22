@@ -25,6 +25,8 @@ Route::prefix('quiz')->group(function (){
     Route::get('/question/delete/{id}',[QuestionController::class,'deleteQuestion'])->name('question.delete');
 
     Route::get('/{id}/result',[QuizController::class,'result'])->name('quiz.result');
+    Route::get('/{id}/result/download',[QuizController::class,'download'])->name('quiz.result.download');
+
 
 
 
