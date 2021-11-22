@@ -19,4 +19,7 @@ class QuizStudent extends Model
     public function student(){
         return $this->belongsTo(Student::class);
     }
+    public function quiz(){
+        return $this->belongsTo(Quiz::class);
+    }
 }

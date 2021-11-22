@@ -217,7 +217,7 @@
                                 </td>
                                     <td>
                                         <button class="btn btn-edit">
-                                            <a href="" class="text-black text-decoration-none" id="">
+                                            <a href="{{route('quiz.result',$quiz->id)}}" class="text-black text-decoration-none" id="">
                                                 النتائج
                                             </a>
                                         </button>

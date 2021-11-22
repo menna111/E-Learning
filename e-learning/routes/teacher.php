@@ -24,6 +24,8 @@ Route::prefix('quiz')->group(function (){
     Route::post('/question/update/{id}',[QuestionController::class,'update'])->name('question.update');
     Route::get('/question/delete/{id}',[QuestionController::class,'deleteQuestion'])->name('question.delete');
 
+    Route::get('/{id}/result',[QuizController::class,'result'])->name('quiz.result');
+
 
 
 });

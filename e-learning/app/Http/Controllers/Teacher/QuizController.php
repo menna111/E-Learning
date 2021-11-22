@@ -105,5 +105,14 @@ class QuizController extends Controller
         $quiz->delete();
 
     }
+
+    public function result($id){
+        $user=Auth::user();
+        $teacher=$user->teacher;
+        $quiz=Quiz::findOrFail($id);
+        $result=$quiz->result()->paginate(10);
+        return view('teacher.quiz.result',compact('quiz','result','user','teacher'));
+
+    }
 }
 
