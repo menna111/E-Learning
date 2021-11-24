@@ -112,7 +112,7 @@ class QuizController extends Controller
         $quiz = Quiz::whereId($request->id)->first();
         $quiz->published = $request->status;
         $quiz->save();
-        return $this->returnSuccess('تم الدعس', 201);
+        return $this->returnSuccess('تم بنجاح', 201);
     }
 
     public function result($id){

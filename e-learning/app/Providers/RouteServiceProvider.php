@@ -51,11 +51,12 @@ class RouteServiceProvider extends ServiceProvider
 //                    ================
 
 
-
+                // teacher route
             Route::middleware(['web','auth','teacher'])
                 ->namespace('App\Http\Controllers\Teacher')
                 ->group(base_path('routes/teacher.php'));
 
+               // student route
             Route::middleware('web','auth','student')
                 ->namespace('App\Http\Controllers\Student')
                 ->group(base_path('routes/student.php'));
